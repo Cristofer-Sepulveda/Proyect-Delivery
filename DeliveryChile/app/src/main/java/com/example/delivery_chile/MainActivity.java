@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     //SE GENERA UN ERROR :(
     public void login() {
-        StringRequest request = new StringRequest(Request.Method.POST, "http://delivery-chile.cl/login",
+        StringRequest request = new StringRequest(Request.Method.POST, "http://delivery-chile.cl/LoginMovilController",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
