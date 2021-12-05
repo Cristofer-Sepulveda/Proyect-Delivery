@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText editEmail, editPassword;
     Button btnIngresar;
+    String email, password;
 
     //String URL= "http://delivery-chile.cl/loginMovil";
 
@@ -32,19 +34,60 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editEmail = (EditText) findViewById(R.id.edtEmail);
-        editPassword = (EditText) findViewById(R.id.edtPassword);
-        btnIngresar = (Button) findViewById(R.id.btnIngresar);
+        editEmail = findViewById(R.id.edtEmail);
+        editPassword = findViewById(R.id.edtPassword);
+        btnIngresar = findViewById(R.id.btnIngresar);
 
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+                email = editEmail.getText().toString();
+                password = editPassword.getText().toString();
+                if (!email.isEmpty() && !password.isEmpty()){
+                    validarUsuario("https://www.delivery-chile.cl/validar_usuario");
+                }else{
+                    Toast.makeText(MainActivity.this, "No se aceptan campos vacios", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
 
+    private void validarUsuario(String URL){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                if (!response.isEmpty()){
+                    Toast.makeText(MainActivity.this, "Sesion iniciada", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), repartidorActivity.class);
+                    startActivity(intent);
+
+                }else{
+                    Toast.makeText(MainActivity.this, "Usuario o contrasena incorrecta" , Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<String, String>();
+                parametros.put("email", editEmail.getText().toString());
+                parametros.put("password", editPassword.getText().toString());
+                return parametros;
+
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
     //SE GENERA UN ERROR :(
+    /*
     public void login() {
         StringRequest request = new StringRequest(Request.Method.POST, "http://delivery-chile.cl/LoginMovilController",
                 new Response.Listener<String>() {
@@ -75,5 +118,5 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         Volley.newRequestQueue(this).add(request);
-    }
+    }*/
 }
