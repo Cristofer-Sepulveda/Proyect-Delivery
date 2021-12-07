@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     EditText editEmail, editPassword;
     Button btnIngresar;
     String email, password;
+    String quetrae;
 
     //String URL= "http://delivery-chile.cl/loginMovil";
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         editEmail = findViewById(R.id.edtEmail);
         editPassword = findViewById(R.id.edtPassword);
         btnIngresar = findViewById(R.id.btnIngresar);
+
 
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,14 +59,26 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(String response) {
-                if (!response.isEmpty()){
-                    Toast.makeText(MainActivity.this, "Sesion iniciada", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(), repartidorActivity.class);
-                    startActivity(intent);
+                String datos;
+                try {
+                    datos= response.replace("\n","");
+                    datos.replace(" ", "");
+                    if (!datos.isEmpty()){
+                        Toast.makeText(MainActivity.this, "Sesion iniciada", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(), repartidorActivity.class);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(MainActivity.this, "Usuario o contrasena incorrecta" , Toast.LENGTH_SHORT).show();
+                    }
 
-                }else{
-                    Toast.makeText(MainActivity.this, "Usuario o contrasena incorrecta" , Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+                    Toast.makeText(MainActivity.this,e.toString(), Toast.LENGTH_LONG).show();
                 }
+
+                response.replaceAll("[\\n\\t ]", "");
+                quetrae = response.toString();
+
+
             }
         }, new Response.ErrorListener() {
             @Override
