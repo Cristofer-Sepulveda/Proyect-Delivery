@@ -61,13 +61,19 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 String datos;
                 try {
+                    // Aqui se reemplaza el "\n" por "" para que la respuesta en json no devuelva datos nulos y se salte el paso del if que viene
                     datos= response.replace("\n","");
+                    // Aca se reemplaza el caracter vacio " " por "" para que no exista nada, nisiquiera un espacio, probablemente este es el que si funciona
                     datos.replace(" ", "");
+                    // Ahora si se peude comprobar, si datos esta vacio
                     if (!datos.isEmpty()){
+                        // Crea un toast que notifica que se inicio sesion
                         Toast.makeText(MainActivity.this, "Sesion iniciada", Toast.LENGTH_LONG).show();
+                        // Se crea un nuevo intento para el activity repartidor
                         Intent intent = new Intent(getApplicationContext(), repartidorActivity.class);
                         startActivity(intent);
                     }else{
+                        // Ahora si se cumple la condicion de que no devuelva nada coincidente desde la base de datos y arroje el siguiente aviso
                         Toast.makeText(MainActivity.this, "Usuario o contrasena incorrecta" , Toast.LENGTH_SHORT).show();
                     }
 
