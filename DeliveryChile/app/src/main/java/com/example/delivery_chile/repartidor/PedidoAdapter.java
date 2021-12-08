@@ -1,20 +1,24 @@
 package com.example.delivery_chile.repartidor;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.delivery_chile.MainActivity;
 import com.example.delivery_chile.R;
 
 import java.util.List;
 
-public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder> {
+public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder>{
 
     LayoutInflater inflater;
     List<Pedido> pedidos;
@@ -50,6 +54,8 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
         holder.valorTotal.setText(pedidos.get(position).getValor_total());
         holder.idEstado.setText(pedidos.get(position).getId_estado());
         holder.fechaModificacion.setText((CharSequence) pedidos.get(position).getFecha_modificacion());
+        // Aqui van los botones y sus listener para abrir otro activity y pasar los datos necesarios para ver o editar
+        holder.setOnClickListeners();
 
 
     }
@@ -59,8 +65,10 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
         return pedidos.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
 
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        Context context;
         TextView idPedido;
         TextView idUsuario;
         TextView idTienda;
@@ -72,8 +80,12 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
         TextView idEstado;
         TextView fechaModificacion;
 
+        Button btnVerDetalles;
+        Button btnEditar;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            context = itemView.getContext();
 
             idPedido = itemView.findViewById(R.id.tv_id_pedido);
             idUsuario = itemView.findViewById(R.id.tv_id_usuario);
@@ -85,6 +97,33 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
             valorTotal = itemView.findViewById(R.id.tv_valor);
             idEstado = itemView.findViewById(R.id.tv_estado);
             fechaModificacion = itemView.findViewById(R.id.tv_fecha_modificacion);
+            btnVerDetalles = itemView.findViewById(R.id.btnVerDetalles);
+            btnEditar = itemView.findViewById(R.id.btnEditar);
+        }
+
+        void setOnClickListeners(){
+            btnVerDetalles.setOnClickListener(this);
+            btnEditar.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.btnVerDetalles:
+                    try {
+                        Intent intent = new Intent(context, detallePedidoActivity.class);
+                        // En versiones de android actuales, si no se pasa el FLAG (Bandera) puede dar error y no abrir el activity
+                        // , por eso tengo esto dentro de un try catch
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                        break;
+                    }catch (Exception e){
+                        Toast.makeText(context.getApplicationContext(), "Error: "+ e.toString() , Toast.LENGTH_SHORT).show();
+                    }
+
+                case R.id.btnEditar:
+                    break;
+            }
         }
     }
 }
