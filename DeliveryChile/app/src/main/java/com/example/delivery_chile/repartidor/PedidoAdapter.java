@@ -115,6 +115,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
                         // En versiones de android actuales, si no se pasa el FLAG (Bandera) puede dar error y no abrir el activity
                         // , por eso tengo esto dentro de un try catch
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("id_pedido", idPedido.getText());
                         context.startActivity(intent);
                         break;
                     }catch (Exception e){
