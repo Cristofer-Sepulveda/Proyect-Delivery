@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/borde_inferior"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -31,7 +31,8 @@
         android:text="Usuario"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="138dp"
-        app:layout_constraintTop_toBottomOf="@id/txtidpedido" />
+        app:layout_constraintTop_toBottomOf="@id/txtidpedido"
+        android:visibility="gone"/>
     <TextView
         android:id="@+id/tv_id_usuario"
         android:layout_marginLeft="140dp"
@@ -40,7 +41,8 @@
         tools:ignore="MissingConstraints"
         android:text="Usuario"
         android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/tv_id_pedido"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_id_pedido"
+        android:visibility="gone"/>
     <TextView
         android:id="@+id/txtidtienda"
         android:layout_marginLeft="20dp"
@@ -49,7 +51,8 @@
         android:text="Tienda"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="138dp"
-        app:layout_constraintTop_toBottomOf="@id/txtidusuario" />
+        app:layout_constraintTop_toBottomOf="@id/txtidusuario"
+        android:visibility="gone"/>
     <TextView
         android:id="@+id/tv_id_tienda"
         android:layout_marginLeft="140dp"
@@ -58,7 +61,8 @@
         tools:ignore="MissingConstraints"
         android:text="Tienda"
         android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/tv_id_usuario"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_id_usuario"
+        android:visibility="gone"/>
     <TextView
         android:id="@+id/txtidproducto"
         android:layout_marginLeft="20dp"
@@ -67,7 +71,8 @@
         android:text="Producto"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="138dp"
-        app:layout_constraintTop_toBottomOf="@id/txtidtienda" />
+        app:layout_constraintTop_toBottomOf="@id/txtidtienda"
+        android:visibility="gone"/>
     <TextView
         android:id="@+id/tv_id_producto"
         android:layout_marginLeft="140dp"
@@ -76,7 +81,8 @@
         tools:ignore="MissingConstraints"
         android:text="Producto"
         android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/tv_id_tienda"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_id_tienda"
+        android:visibility="gone"/>
     <TextView
         android:id="@+id/txtcantidad"
         android:layout_marginLeft="20dp"
@@ -85,7 +91,8 @@
         android:text="Cantidad"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="138dp"
-        app:layout_constraintTop_toBottomOf="@id/txtidproducto" />
+        app:layout_constraintTop_toBottomOf="@id/txtidproducto"
+        android:visibility="gone"/>
     <TextView
         android:id="@+id/tv_cantidad"
         android:layout_marginLeft="140dp"
@@ -94,7 +101,8 @@
         tools:ignore="MissingConstraints"
         android:text="Cantidad"
         android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/tv_id_producto"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_id_producto"
+        android:visibility="gone"/>
     <TextView
         android:id="@+id/txtdireccion"
         android:layout_marginLeft="20dp"
@@ -103,7 +111,8 @@
         android:text="Direccion"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="138dp"
-        app:layout_constraintTop_toBottomOf="@id/txtcantidad" />
+        app:layout_constraintTop_toBottomOf="@id/txtcantidad"
+        android:visibility="gone"/>
     <TextView
         android:id="@+id/tv_direccion"
         android:layout_marginLeft="140dp"
@@ -112,7 +121,8 @@
         tools:ignore="MissingConstraints"
         android:text="Direccion"
         android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/tv_cantidad"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_cantidad"
+        android:visibility="gone"/>
     <TextView
         android:id="@+id/txtfecha"
         android:layout_marginLeft="20dp"
@@ -175,7 +185,8 @@
         android:text="Fecha Modificacion"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="138dp"
-        app:layout_constraintTop_toBottomOf="@id/txtestado" />
+        app:layout_constraintTop_toBottomOf="@id/txtestado"
+        android:visibility="gone"/>
     <TextView
         android:id="@+id/tv_fecha_modificacion"
         android:layout_marginLeft="140dp"
@@ -184,12 +195,27 @@
         tools:ignore="MissingConstraints"
         android:text="Fecha Modificacion"
         android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/tv_estado"/>
-    <TextView
-        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_estado"
+        android:visibility="gone"/>
+    <Button
+
+        android:id="@+id/btnVerDetalles"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
-        app:layout_constraintTop_toBottomOf="@id/txtfechamodificacion"/>
+        android:text="Ver Pedido"
+        app:layout_constraintTop_toBottomOf="@id/tv_fecha_modificacion"/>
+
+    <Button
+        android:id="@+id/btnEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@id/btnVerDetalles"
+        app:layout_constraintRight_toRightOf="@id/tv_fecha_modificacion"
+
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
