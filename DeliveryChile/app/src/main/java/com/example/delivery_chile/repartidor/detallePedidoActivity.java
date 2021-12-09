@@ -36,7 +36,7 @@ public class detallePedidoActivity extends AppCompatActivity {
         TextView txtIdUsuario = findViewById(R.id.usuario);
         txtIdUsuario.setText(idUsuario);
         TextView txtIdTienda = findViewById(R.id.tienda);
-        txtIdPedido.setText(idTienda);
+        txtIdTienda.setText(idTienda);
         TextView txtDireccion = findViewById(R.id.direccion);
         txtDireccion.setText(direccion);
         TextView txtValor = findViewById(R.id.valor_total);
