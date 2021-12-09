@@ -3,6 +3,7 @@ package com.example.delivery_chile.repartidor;
 import android.content.Context;
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -106,6 +107,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
             btnEditar.setOnClickListener(this);
         }
 
+
         @Override
         public void onClick(View v) {
             switch (v.getId()){
@@ -114,8 +116,14 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
                         Intent intent = new Intent(context, detallePedidoActivity.class);
                         // En versiones de android actuales, si no se pasa el FLAG (Bandera) puede dar error y no abrir el activity
                         // , por eso tengo esto dentro de un try catch
+
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra("id_pedido", idPedido.getText());
+                        intent.putExtra("id_usuario", idUsuario.getText());
+                        intent.putExtra("id_tienda", idTienda.getText());
+                        intent.putExtra("direccion", direccion.getText());
+                        intent.putExtra("valor_total", valorTotal.getText());
+                        intent.putExtra("id_estado", idEstado.getText());
                         context.startActivity(intent);
                         break;
                     }catch (Exception e){
