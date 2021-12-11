@@ -64,7 +64,8 @@ public class detallePedidoActivity extends AppCompatActivity {
 
              // Esto esta dando error, no deberia pero lo hace, supongo que la respuesta que obtiene es el error
             try {
-                VonageClient client = VonageClient.builder().apiKey("5e5b65d1").apiSecret("uTaCIRfPb3pmW9JJ").build();
+                /*5e5b65d1 uTaCIRfPb3pmW9JJ*/
+                VonageClient client = VonageClient.builder().apiKey("").apiSecret("").build();
 
                 TextMessage message = new TextMessage("Vonage APIs",
                         "56975225722",
