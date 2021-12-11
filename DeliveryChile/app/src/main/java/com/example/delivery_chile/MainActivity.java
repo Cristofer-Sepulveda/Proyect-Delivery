@@ -106,37 +106,4 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    //SE GENERA UN ERROR :(
-    /*
-    public void login() {
-        StringRequest request = new StringRequest(Request.Method.POST, "http://delivery-chile.cl/LoginMovilController",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-                        //Toast.makeText(getApplicationContext(), "this is response : " + response, Toast.LENGTH_LONG).show();
-
-
-                        if (response.contains("1")){
-                            startActivity(new Intent(getApplicationContext(), repartidorActivity.class));
-                        }else{
-                            Toast.makeText(getApplicationContext(),
-                                    "Wrong email or password",Toast.LENGTH_LONG).show();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }){
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("email", editEmail.getText().toString());
-                params.put("password", editPassword.getText().toString());
-                return params;
-            }
-        };
-        Volley.newRequestQueue(this).add(request);
-    }*/
 }
