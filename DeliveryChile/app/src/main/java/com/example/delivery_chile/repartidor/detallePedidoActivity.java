@@ -3,6 +3,7 @@ package com.example.delivery_chile.repartidor;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,8 @@ public class detallePedidoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_pedido);
+
+
 
 
         String idPedido = "";
@@ -53,42 +56,50 @@ public class detallePedidoActivity extends AppCompatActivity {
         txtValor.setText(valorTotal);
         TextView txtIdEstado = findViewById(R.id.estado);
         txtIdEstado.setText(idEstado);
-
         Button btnEnviarNotificacion = findViewById(R.id.btnEnviarNotificacion);
 
+        btnEnviarNotificacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"El evento funciona, pero el codigo no",Toast.LENGTH_LONG).show();
+                /**
+                try {
+                 //K 5e5b65d1 AS uTaCIRfPb3pmW9JJ
+                 // Estas son de V O N A G E, las comento para que git nomande el aviso de la apikey filtrada
+                    VonageClient client = VonageClient.builder().apiKey("------").apiSecret("-------").build();
 
-        btnEnviarNotificacion.setOnClickListener(view -> {
-            //Aqui tambien se importa la clase, esto solo es posible si se ha implementado en el archivo gradle
-            //Ahora solo queda pasar los datos correctos como string al mensaje y la api se encargara del resto
+                    TextMessage message = new TextMessage("Vonage APIs",
+                            "56975225722",
+                            "A text message sent using the Vonage SMS API"
+                    );
+
+                    SmsSubmissionResponse response = client.getSmsClient().submitMessage(message);
+
+                    if (response.getMessages().get(0).getStatus() == MessageStatus.OK) {
+                        System.out.println("Message sent successfully.");
+                        Toast.makeText(getApplicationContext(),"Enviado",Toast.LENGTH_LONG).show();
+                    } else {
+                        System.out.println("Message failed with error: " + response.getMessages().get(0).getErrorText());
+                        Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
+                    }
 
 
-             // Esto esta dando error, no deberia pero lo hace, supongo que la respuesta que obtiene es el error
-            try {
-                /*5e5b65d1 uTaCIRfPb3pmW9JJ*/
-                VonageClient client = VonageClient.builder().apiKey("").apiSecret("").build();
-
-                TextMessage message = new TextMessage("Vonage APIs",
-                        "56975225722",
-                        "A text message sent using the Vonage SMS API"
-                );
-
-
-
-             //Esta linea es la que genera el error de tipo No static field INSTANCE of type Lorg/apache/http/conn/ssl/AllowAllHostnameVerifier
-             // No se como avanzar sin hacer funcionar esto
-                SmsSubmissionResponse response = client.getSmsClient().submitMessage(message);
-
-                if (response.getMessages().get(0).getStatus() == MessageStatus.OK) {
-                    System.out.println("Message sent successfully. " + response.getMessages());
-                } else {
-                    System.out.println("Message failed with error: " + response.getMessages().get(0).getErrorText());
+                    Toast.makeText(getApplicationContext(),"Paso bien",Toast.LENGTH_LONG).show();
+                }catch (Exception e){
+                    Toast.makeText(getApplicationContext(),"",Toast.LENGTH_LONG).show();
                 }
-            }catch (Exception exception){
-                Toast.makeText(getApplicationContext(),"Error: " + exception.toString(),Toast.LENGTH_LONG).show();
+                 **/
             }
-
-
-
         });
+
+
+
+
+
+
+
+
     }
+
+
 }

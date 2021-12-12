@@ -29,6 +29,8 @@ android {
 
 dependencies {
 
+
+
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
@@ -42,8 +44,12 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
     implementation 'com.vonage:client:6.4.0'
+    implementation('org.apache.httpcomponents:httpclient:4.5.4'){
+        force = true
 
-    implementation 'net.sourceforge.htmlunit:htmlunit:2.15'
+    }
+
+
 
 
 }
