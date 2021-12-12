@@ -2,9 +2,13 @@ package com.example.delivery_chile.repartidor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,15 +18,21 @@ import com.vonage.client.sms.MessageStatus;
 import com.vonage.client.sms.SmsSubmissionResponse;
 import com.vonage.client.sms.messages.TextMessage;
 
+import java.util.Locale;
+
 public class detallePedidoActivity extends AppCompatActivity {
 
     //Este boton se encargara de enviar por POST los datos de Estado del pedido a un numero de telefono mediante VONAGE(nexmo)
+    EditText latitud, longitud;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_pedido);
+
+        latitud = findViewById(R.id.latitud);
+        longitud = findViewById(R.id.longitud);
 
 
 
@@ -33,6 +43,7 @@ public class detallePedidoActivity extends AppCompatActivity {
         String direccion = "";
         String valorTotal = "";
         String idEstado = "";
+
 
         Bundle extras = getIntent().getExtras();
         if (extras !=null){
@@ -56,6 +67,34 @@ public class detallePedidoActivity extends AppCompatActivity {
         txtValor.setText(valorTotal);
         TextView txtIdEstado = findViewById(R.id.estado);
         txtIdEstado.setText(idEstado);
+
+
+        Button btnVerMapa = findViewById(R.id.btnVerMapa);
+        
+        btnVerMapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Abrir mapa", Toast.LENGTH_SHORT).show();
+                String latit = latitud.getText().toString();
+                String longit = longitud.getText().toString();
+
+                // convert into Double
+                double lat = Double.parseDouble(latit);
+                double lon = Double.parseDouble(longit);
+
+
+
+
+                try {
+                    String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?q=loc:%f,%f", lat,lon);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    startActivity(intent);
+                }catch (Exception e){
+                    Toast.makeText(getApplicationContext(), "Error: "+ e.toString(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        
         Button btnEnviarNotificacion = findViewById(R.id.btnEnviarNotificacion);
 
         btnEnviarNotificacion.setOnClickListener(new View.OnClickListener() {
