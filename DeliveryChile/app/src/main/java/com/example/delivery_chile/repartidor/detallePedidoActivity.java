@@ -62,11 +62,11 @@ public class detallePedidoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(),"El evento funciona, pero el codigo no",Toast.LENGTH_LONG).show();
-                /**
+                /****/
                 try {
                  //K 5e5b65d1 AS uTaCIRfPb3pmW9JJ
                  // Estas son de V O N A G E, las comento para que git nomande el aviso de la apikey filtrada
-                    VonageClient client = VonageClient.builder().apiKey("------").apiSecret("-------").build();
+                    VonageClient client = VonageClient.builder().apiKey("5e5b65d1").apiSecret("uTaCIRfPb3pmW9JJ").build();
 
                     TextMessage message = new TextMessage("Vonage APIs",
                             "56975225722",
@@ -88,7 +88,7 @@ public class detallePedidoActivity extends AppCompatActivity {
                 }catch (Exception e){
                     Toast.makeText(getApplicationContext(),"",Toast.LENGTH_LONG).show();
                 }
-                 **/
+                 /****/
             }
         });
 
