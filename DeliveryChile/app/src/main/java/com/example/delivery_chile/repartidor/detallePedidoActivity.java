@@ -82,7 +82,7 @@ public class detallePedidoActivity extends AppCompatActivity {
         btnVerMapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Abrir mapa", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Abriendo Maps", Toast.LENGTH_SHORT).show();
                 String latit = latitud.getText().toString();
                 String longit = longitud.getText().toString();
 
