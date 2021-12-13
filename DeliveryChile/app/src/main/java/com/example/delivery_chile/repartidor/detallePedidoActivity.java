@@ -41,6 +41,8 @@ public class detallePedidoActivity extends AppCompatActivity {
         String idUsuario = "";
         String idTienda = "";
         String direccion = "";
+        String obtenerlatitud = "";
+        String obtenerLongitud = "";
         String valorTotal = "";
         String idEstado = "";
 
@@ -51,6 +53,8 @@ public class detallePedidoActivity extends AppCompatActivity {
             idUsuario = extras.getString("id_usuario");
             idTienda = extras.getString("id_tienda");
             direccion = extras.getString("direccion");
+            obtenerlatitud = extras.getString("latitud");
+            obtenerLongitud = extras.getString("longitud");
             valorTotal = extras.getString("valor_total");
             idEstado = extras.getString("id_estado");
         }
@@ -63,6 +67,10 @@ public class detallePedidoActivity extends AppCompatActivity {
         txtIdTienda.setText(idTienda);
         TextView txtDireccion = findViewById(R.id.direccion);
         txtDireccion.setText(direccion);
+        EditText edtLatitud = findViewById(R.id.latitud);
+        edtLatitud.setText(obtenerlatitud);
+        EditText edtLongitud = findViewById(R.id.longitud);
+        edtLongitud.setText(obtenerLongitud);
         TextView txtValor = findViewById(R.id.valor_total);
         txtValor.setText(valorTotal);
         TextView txtIdEstado = findViewById(R.id.estado);

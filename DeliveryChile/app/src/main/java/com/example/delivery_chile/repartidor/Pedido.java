@@ -9,6 +9,8 @@ public class Pedido {
     private String producto_id_producto;
     private String cantidad;
     private String direccion_destino;
+    private String latitud;
+    private String longitud;
     private String fecha_pedido;
     private String valor_total;
     private String id_estado;
@@ -17,13 +19,15 @@ public class Pedido {
     public Pedido(){
 
     }
-    public Pedido(String id_pedido,String usuario_id_usuario, String tienda_id_tienda, String producto_id_producto, String cantidad, String direccion_destino, String fecha_pedido, String valor_total, String id_estado, String fecha_modificacion) {
+    public Pedido(String id_pedido,String usuario_id_usuario, String tienda_id_tienda, String producto_id_producto, String cantidad, String direccion_destino, String latitud, String longitud, String fecha_pedido, String valor_total, String id_estado, String fecha_modificacion) {
         this.id_pedido = id_pedido;
         this.usuario_id_usuario = usuario_id_usuario;
         this.tienda_id_tienda = tienda_id_tienda;
         this.producto_id_producto = producto_id_producto;
         this.cantidad = cantidad;
         this.direccion_destino = direccion_destino;
+        this.latitud = latitud;
+        this.longitud = longitud;
         this.fecha_pedido = fecha_pedido;
         this.valor_total = valor_total;
         this.id_estado = id_estado;
@@ -77,6 +81,22 @@ public class Pedido {
 
     public void setDireccion_destino(String direccion_destino) {
         this.direccion_destino = direccion_destino;
+    }
+
+    public String getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
+    }
+
+    public String getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
     }
 
     public String getFecha_pedido() {

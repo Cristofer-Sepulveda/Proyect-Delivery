@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,8 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
         holder.idProducto.setText(pedidos.get(position).getProducto_id_producto());
         holder.cantidad.setText(pedidos.get(position).getCantidad());
         holder.direccion.setText(pedidos.get(position).getDireccion_destino());
+        holder.latitud.setText(pedidos.get(position).getLatitud());
+        holder.longitud.setText(pedidos.get(position).getLongitud());
         holder.fechaPedido.setText((CharSequence) pedidos.get(position).getFecha_pedido());
         holder.valorTotal.setText(pedidos.get(position).getValor_total());
         holder.idEstado.setText(pedidos.get(position).getId_estado());
@@ -76,6 +79,8 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
         TextView idProducto;
         TextView cantidad;
         TextView direccion;
+        TextView latitud;
+        TextView longitud;
         TextView fechaPedido;
         TextView valorTotal;
         TextView idEstado;
@@ -94,6 +99,8 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
             idProducto = itemView.findViewById(R.id.tv_id_producto);
             cantidad = itemView.findViewById(R.id.tv_cantidad);
             direccion = itemView.findViewById(R.id.tv_direccion);
+            latitud = itemView.findViewById(R.id.tv_latitud);
+            longitud = itemView.findViewById(R.id.tv_longitud);
             fechaPedido = itemView.findViewById(R.id.tv_fecha);
             valorTotal = itemView.findViewById(R.id.tv_valor);
             idEstado = itemView.findViewById(R.id.tv_estado);
@@ -122,6 +129,8 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
                         intent.putExtra("id_usuario", idUsuario.getText());
                         intent.putExtra("id_tienda", idTienda.getText());
                         intent.putExtra("direccion", direccion.getText());
+                        intent.putExtra("latitud", latitud.getText());
+                        intent.putExtra("longitud", longitud.getText());
                         intent.putExtra("valor_total", valorTotal.getText());
                         intent.putExtra("id_estado", idEstado.getText());
                         context.startActivity(intent);
