@@ -1,10 +1,16 @@
 package com.example.delivery_chile.repartidor;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
@@ -108,8 +114,19 @@ public class detallePedidoActivity extends AppCompatActivity {
         btnEnviarNotificacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"El evento funciona, pero el codigo no",Toast.LENGTH_LONG).show();
-                /****/
+                //Toast.makeText(getApplicationContext(),"El evento funciona, pero el codigo no",Toast.LENGTH_LONG).show();
+
+                if (ContextCompat.checkSelfPermission(detallePedidoActivity.this,
+                        Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED){
+                    //Cuando se da el permiso
+                    //Crear el metodo
+                    sendMessage();
+
+                }else{
+                    ActivityCompat.requestPermissions(detallePedidoActivity.this, new String[]{Manifest.permission.SEND_SMS}, 100);
+                }
+
+                /**
                 try {
                  //K 5e5b65d1 AS uTaCIRfPb3pmW9JJ
                  // Estas son de V O N A G E, las comento para que git nomande el aviso de la apikey filtrada
@@ -137,7 +154,24 @@ public class detallePedidoActivity extends AppCompatActivity {
                 }
                  /****/
             }
+            private void sendMessage(){
+                String sPhone = "56975225722";
+                String sMessage = "Texto de prueba del mensaje Delivery Chile";
+
+                if (!sPhone.equals("") && !sMessage.equals("")){
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(sPhone, null, sMessage, null, null);
+                    Toast.makeText(getApplicationContext(), "Mensaje enviado correctamente", Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+
         });
+
+
 
 
 
