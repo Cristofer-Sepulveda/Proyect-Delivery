@@ -18,6 +18,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.delivery_chile.repartidor.repartidorActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 password = editPassword.getText().toString();
                 if (!email.isEmpty() && !password.isEmpty()){
                     validarUsuario("https://www.delivery-chile.cl/validar_usuario");
+
                 }else{
                     Toast.makeText(MainActivity.this, "No se aceptan campos vacios", Toast.LENGTH_LONG).show();
                 }
@@ -60,17 +64,31 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 String datos;
+                JSONObject obj = null;
+                try {
+                    obj = new JSONObject(response);
+                    String id_user = obj.getString("id_usuario");
+                    //Toast.makeText(getApplicationContext(), "" + id_user, Toast.LENGTH_LONG).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 try {
                     // Aqui se reemplaza el "\n" por "" para que la respuesta en json no devuelva datos nulos y se salte el paso del if que viene
                     datos= response.replace("\n","");
                     // Aca se reemplaza el caracter vacio " " por "" para que no exista nada, nisiquiera un espacio, probablemente este es el que si funciona
                     datos.replace(" ", "");
-                    // Ahora si se peude comprobar, si datos esta vacio
+                    // Ahora si se puede comprobar, si datos esta vacio
                     if (!datos.isEmpty()){
                         // Crea un toast que notifica que se inicio sesion
                         Toast.makeText(MainActivity.this, "Sesion iniciada", Toast.LENGTH_LONG).show();
                         // Se crea un nuevo intento para el activity repartidor
                         Intent intent = new Intent(getApplicationContext(), repartidorActivity.class);
+                        // Aqui se debe enviar el id del usuario con un put extra?
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        obj = new JSONObject(response);
+                        String id_user = obj.getString("id_usuario");
+                        intent.putExtra("id_usuario", id_user);
+
                         startActivity(intent);
                     }else{
                         // Ahora si se cumple la condicion de que no devuelva nada coincidente desde la base de datos y arroje el siguiente aviso

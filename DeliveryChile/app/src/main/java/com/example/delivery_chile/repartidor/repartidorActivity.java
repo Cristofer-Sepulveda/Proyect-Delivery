@@ -40,8 +40,11 @@ public class repartidorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repartidor);
 
+
+
         recyclerView = findViewById(R.id.recycler_lista_pedidos);
         pedidos = new ArrayList<>();
+
 
         extractPedido();
 
@@ -53,11 +56,21 @@ public class repartidorActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonArrayRequest jsonArrayRequest =  new JsonArrayRequest(Request.Method.GET, JSON_URL, null, new Response.Listener<JSONArray>() {
 
+            String usuario;
             @Override
             public void onResponse(JSONArray response) {
                 for (int i=0; i<response.length(); i++) {
                     try {
                         JSONObject pedidoObject = response.getJSONObject(i);
+
+                        String id_user = "";
+
+
+                        Bundle extras = getIntent().getExtras();
+                        if (extras !=null){
+                            id_user = extras.getString("id_usuario");
+                        }
+
 
                         Pedido pedido = new Pedido();
                         pedido.setId_pedido(pedidoObject.getString("id_pedido").toString());
@@ -74,6 +87,7 @@ public class repartidorActivity extends AppCompatActivity {
                         pedido.setFecha_modificacion(pedidoObject.getString("fecha_modificacion").toString());
 
                         pedidos.add(pedido);
+
 
 
                     } catch (JSONException e) {

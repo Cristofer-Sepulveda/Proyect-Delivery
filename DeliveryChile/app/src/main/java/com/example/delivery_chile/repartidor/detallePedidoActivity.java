@@ -155,16 +155,21 @@ public class detallePedidoActivity extends AppCompatActivity {
                  /****/
             }
             private void sendMessage(){
-                String sPhone = "56975225722";
+                String sPhone = "56949142066";
                 String sMessage = "Texto de prueba del mensaje Delivery Chile";
 
-                if (!sPhone.equals("") && !sMessage.equals("")){
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(sPhone, null, sMessage, null, null);
-                    Toast.makeText(getApplicationContext(), "Mensaje enviado correctamente", Toast.LENGTH_LONG).show();
-                }else {
-                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                try {
+                    if (!sPhone.equals("") && !sMessage.equals("")){
+                        SmsManager smsManager = SmsManager.getDefault();
+                        smsManager.sendTextMessage(sPhone, null, sMessage, null, null);
+                        Toast.makeText(getApplicationContext(), "Mensaje enviado correctamente", Toast.LENGTH_LONG).show();
+                    }else {
+                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                    }
+                }catch (Exception e){
+
                 }
+
 
             }
 
