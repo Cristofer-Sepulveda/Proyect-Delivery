@@ -88,13 +88,34 @@
         app:layout_constraintTop_toBottomOf="@id/usuario" />
 
     <TextView
-        android:id="@+id/direccion_lbl"
+        android:id="@+id/telefono_lbl"
         android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="138dp"
         app:layout_constraintTop_toBottomOf="@id/tienda_lbl"
+        android:hint="TELEFONO"
+        />
+
+    <TextView
+        android:id="@+id/telefono"
+        android:layout_marginLeft="140dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:hint=""
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tienda" />
+
+    <TextView
+        android:id="@+id/direccion_lbl"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="138dp"
+        app:layout_constraintTop_toBottomOf="@id/telefono_lbl"
         android:hint="DIRECCION" />
 
     <TextView
@@ -105,7 +126,7 @@
         tools:ignore="MissingConstraints"
         android:hint=""
         android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/tienda" />
+        app:layout_constraintTop_toBottomOf="@id/telefono" />
 
     <TextView
         android:id="@+id/valor_total_lbl"
