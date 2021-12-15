@@ -7,7 +7,7 @@ public class Pedido {
     private String usuario_id_usuario;
     private String tienda_id_tienda;
     private String producto_id_producto;
-    private String cantidad;
+    private String telefono;
     private String direccion_destino;
     private String latitud;
     private String longitud;
@@ -19,12 +19,12 @@ public class Pedido {
     public Pedido(){
 
     }
-    public Pedido(String id_pedido,String usuario_id_usuario, String tienda_id_tienda, String producto_id_producto, String cantidad, String direccion_destino, String latitud, String longitud, String fecha_pedido, String valor_total, String id_estado, String fecha_modificacion) {
+    public Pedido(String id_pedido,String usuario_id_usuario, String tienda_id_tienda, String producto_id_producto, String telefono, String direccion_destino, String latitud, String longitud, String fecha_pedido, String valor_total, String id_estado, String fecha_modificacion) {
         this.id_pedido = id_pedido;
         this.usuario_id_usuario = usuario_id_usuario;
         this.tienda_id_tienda = tienda_id_tienda;
         this.producto_id_producto = producto_id_producto;
-        this.cantidad = cantidad;
+        this.telefono = telefono;
         this.direccion_destino = direccion_destino;
         this.latitud = latitud;
         this.longitud = longitud;
@@ -67,12 +67,12 @@ public class Pedido {
         this.producto_id_producto = producto_id_producto;
     }
 
-    public String getCantidad() {
-        return cantidad;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setCantidad(String cantidad) {
-        this.cantidad = cantidad;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getDireccion_destino() {

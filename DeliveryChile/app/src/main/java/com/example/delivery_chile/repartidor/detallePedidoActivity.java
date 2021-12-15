@@ -59,6 +59,7 @@ public class detallePedidoActivity extends AppCompatActivity {
             idPedido = extras.getString("id_pedido");
             idUsuario = extras.getString("id_usuario");
             idTienda = extras.getString("id_tienda");
+            telefono = extras.getString("telefono");
             direccion = extras.getString("direccion");
             obtenerlatitud = extras.getString("latitud");
             obtenerLongitud = extras.getString("longitud");
@@ -158,8 +159,8 @@ public class detallePedidoActivity extends AppCompatActivity {
                  /****/
             }
             private void sendMessage(){
-                String sPhone = "56949142066";
-                String sMessage = "Su pedido: +++++++++++++ ha salido a reparto";
+                String sPhone = "56"+txtTelefono.getText();
+                String sMessage = "Su pedido: "+txtIdPedido.getText()+" ha salido a reparto";
 
                 try {
                     if (!sPhone.equals("") && !sMessage.equals("")){
