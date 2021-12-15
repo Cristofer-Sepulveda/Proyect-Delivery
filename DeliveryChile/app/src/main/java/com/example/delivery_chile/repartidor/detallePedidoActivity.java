@@ -156,7 +156,7 @@ public class detallePedidoActivity extends AppCompatActivity {
             }
             private void sendMessage(){
                 String sPhone = "56949142066";
-                String sMessage = "Texto de prueba del mensaje Delivery Chile";
+                String sMessage = "Su pedido: +++++++++++++ ha salido a reparto";
 
                 try {
                     if (!sPhone.equals("") && !sMessage.equals("")){

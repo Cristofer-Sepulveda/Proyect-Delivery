@@ -18,6 +18,16 @@
         android:textSize="50dp"
         android:textStyle="bold|italic" />
 
+    <SearchView
+        android:id="@+id/barra_de_busqueda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:visibility="gone"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_lista_pedidos"
         android:layout_width="match_parent"
