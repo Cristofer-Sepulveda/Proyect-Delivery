@@ -159,7 +159,7 @@ public class detallePedidoActivity extends AppCompatActivity {
                  /****/
             }
             private void sendMessage(){
-                String sPhone = "56"+txtTelefono.getText();
+                String sPhone = txtTelefono.getText().toString();
                 String sMessage = "Su pedido: "+txtIdPedido.getText()+" ha salido a reparto";
 
                 try {
