@@ -74,7 +74,7 @@ public class detallePedidoActivity extends AppCompatActivity {
         TextView txtIdTienda = findViewById(R.id.tienda);
         txtIdTienda.setText(idTienda);
         TextView txtTelefono = findViewById(R.id.telefono);
-        txtTelefono.setText("+56"+telefono);
+        txtTelefono.setText("56"+telefono);
         TextView txtDireccion = findViewById(R.id.direccion);
         txtDireccion.setText(direccion);
         EditText edtLatitud = findViewById(R.id.latitud);
