@@ -67,13 +67,34 @@
         app:layout_constraintTop_toBottomOf="@id/id_pedido" />
 
     <TextView
-        android:id="@+id/tienda_lbl"
+        android:id="@+id/descripcion_lbl"
         android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="138dp"
         app:layout_constraintTop_toBottomOf="@id/usuario_lbl"
+        android:hint="DESCRIPCION"
+        />
+
+    <TextView
+        android:id="@+id/descripcion"
+        android:layout_marginLeft="140dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:hint=""
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/usuario" />
+
+    <TextView
+        android:id="@+id/tienda_lbl"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="138dp"
+        app:layout_constraintTop_toBottomOf="@id/descripcion_lbl"
         android:hint="TIENDA"
          />
 
@@ -85,7 +106,7 @@
         tools:ignore="MissingConstraints"
         android:hint=""
         android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/usuario" />
+        app:layout_constraintTop_toBottomOf="@id/descripcion" />
 
     <TextView
         android:id="@+id/telefono_lbl"

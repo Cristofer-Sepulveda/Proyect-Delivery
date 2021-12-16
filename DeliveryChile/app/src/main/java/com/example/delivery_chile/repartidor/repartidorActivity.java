@@ -76,7 +76,7 @@ public class repartidorActivity extends AppCompatActivity {
                         pedido.setId_pedido(pedidoObject.getString("id_pedido").toString());
                         pedido.setUsuario_id_usuario(pedidoObject.getString("usuario_id_usuario").toString());
                         pedido.setTienda_id_tienda(pedidoObject.getString("tienda_id_tienda").toString());
-                        pedido.setProducto_id_producto(pedidoObject.getString("producto_id_producto").toString());
+                        pedido.setDescripcion(pedidoObject.getString("descripcion").toString());
                         pedido.setTelefono(pedidoObject.getString("telefono").toString());
                         pedido.setDireccion_destino(pedidoObject.getString("direccion_destino").toString());
                         pedido.setLatitud(pedidoObject.getString("latitud").toString());

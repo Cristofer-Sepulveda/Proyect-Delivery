@@ -49,7 +49,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
         holder.idPedido.setText(pedidos.get(position).getId_pedido());
         holder.idUsuario.setText(pedidos.get(position).getUsuario_id_usuario());
         holder.idTienda.setText(pedidos.get(position).getTienda_id_tienda());
-        holder.idProducto.setText(pedidos.get(position).getProducto_id_producto());
+        holder.descripcion.setText(pedidos.get(position).getDescripcion());
         holder.telefono.setText(pedidos.get(position).getTelefono());
         holder.direccion.setText(pedidos.get(position).getDireccion_destino());
         holder.latitud.setText(pedidos.get(position).getLatitud());
@@ -76,7 +76,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
         TextView idPedido;
         TextView idUsuario;
         TextView idTienda;
-        TextView idProducto;
+        TextView descripcion;
         TextView telefono;
         TextView direccion;
         TextView latitud;
@@ -96,7 +96,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
             idPedido = itemView.findViewById(R.id.tv_id_pedido);
             idUsuario = itemView.findViewById(R.id.tv_id_usuario);
             idTienda = itemView.findViewById(R.id.tv_id_tienda);
-            idProducto = itemView.findViewById(R.id.tv_id_producto);
+            descripcion = itemView.findViewById(R.id.tv_descripcion);
             telefono = itemView.findViewById(R.id.tv_telefono);
             direccion = itemView.findViewById(R.id.tv_direccion);
             latitud = itemView.findViewById(R.id.tv_latitud);
@@ -128,6 +128,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
                         intent.putExtra("id_pedido", idPedido.getText());
                         intent.putExtra("id_usuario", idUsuario.getText());
                         intent.putExtra("id_tienda", idTienda.getText());
+                        intent.putExtra("descripcion", descripcion.getText());
                         intent.putExtra("telefono", telefono.getText());
                         intent.putExtra("direccion", direccion.getText());
                         intent.putExtra("latitud", latitud.getText());

@@ -46,6 +46,7 @@ public class detallePedidoActivity extends AppCompatActivity {
         String idPedido = "";
         String idUsuario = "";
         String idTienda = "";
+        String descripcion = "";
         String telefono = "";
         String direccion = "";
         String obtenerlatitud = "";
@@ -59,6 +60,7 @@ public class detallePedidoActivity extends AppCompatActivity {
             idPedido = extras.getString("id_pedido");
             idUsuario = extras.getString("id_usuario");
             idTienda = extras.getString("id_tienda");
+            descripcion = extras.getString("descripcion");
             telefono = extras.getString("telefono");
             direccion = extras.getString("direccion");
             obtenerlatitud = extras.getString("latitud");
@@ -73,6 +75,8 @@ public class detallePedidoActivity extends AppCompatActivity {
         txtIdUsuario.setText(idUsuario);
         TextView txtIdTienda = findViewById(R.id.tienda);
         txtIdTienda.setText(idTienda);
+        TextView txtdescripcion = findViewById(R.id.descripcion);
+        txtdescripcion.setText(descripcion);
         TextView txtTelefono = findViewById(R.id.telefono);
         txtTelefono.setText("56"+telefono);
         TextView txtDireccion = findViewById(R.id.direccion);
@@ -160,7 +164,7 @@ public class detallePedidoActivity extends AppCompatActivity {
             }
             private void sendMessage(){
                 String sPhone = txtTelefono.getText().toString();
-                String sMessage = "Su pedido: "+txtIdPedido.getText()+" ha salido a reparto";
+                String sMessage = "Su pedido "+txtIdPedido.getText()+": "+txtdescripcion.getText()+" ha salido a reparto";
 
                 try {
                     if (!sPhone.equals("") && !sMessage.equals("")){

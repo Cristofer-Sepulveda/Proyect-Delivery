@@ -74,12 +74,12 @@
         app:layout_constraintTop_toBottomOf="@id/txtidtienda"
         android:visibility="gone"/>
     <TextView
-        android:id="@+id/tv_id_producto"
+        android:id="@+id/tv_descripcion"
         android:layout_marginLeft="140dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
-        android:text="Producto"
+        android:text="Descripcion"
         android:gravity="center_horizontal"
         app:layout_constraintTop_toBottomOf="@id/tv_id_tienda"
         android:visibility="gone"/>
@@ -101,7 +101,7 @@
         tools:ignore="MissingConstraints"
         android:text="Cantidad"
         android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/tv_id_producto"
+        app:layout_constraintTop_toBottomOf="@id/tv_descripcion"
         android:visibility="gone"/>
     <TextView
         android:id="@+id/txtdireccion"
