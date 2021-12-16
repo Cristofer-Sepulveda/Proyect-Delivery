@@ -164,7 +164,7 @@ public class detallePedidoActivity extends AppCompatActivity {
             }
             private void sendMessage(){
                 String sPhone = txtTelefono.getText().toString();
-                String sMessage = "Su pedido "+txtIdPedido.getText()+": "+txtdescripcion.getText()+" ha salido a reparto";
+                String sMessage = "Su pedido Nro: "+txtIdPedido.getText()+"\n"+"Contenido: "+txtdescripcion.getText()+" ha salido a reparto";
 
                 try {
                     if (!sPhone.equals("") && !sMessage.equals("")){
