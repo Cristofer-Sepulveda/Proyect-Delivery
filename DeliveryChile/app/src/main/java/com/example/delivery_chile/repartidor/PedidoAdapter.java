@@ -43,8 +43,22 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+        //filtar por id
 
 
+
+        /*String id_user = "";
+
+
+        Bundle extras = getIntent().getExtras();
+        if (extras !=null){
+            id_user = extras.getString("id_usuario");
+        }
+
+        String id1 = "";
+        String id2="";
+        id2 = pedidos.get(position).getId_u();
+        if ()*/
 
         holder.idPedido.setText(pedidos.get(position).getId_pedido());
         holder.idUsuario.setText(pedidos.get(position).getUsuario_id_usuario());
