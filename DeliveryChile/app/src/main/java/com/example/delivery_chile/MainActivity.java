@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 email = editEmail.getText().toString();
                 password = editPassword.getText().toString();
                 if (!email.isEmpty() && !password.isEmpty()){
-                    validarUsuario("http://delivery-chile.cl/validar_usuario");
+                    validarUsuario("https://www.delivery-chile.cl/validar_usuario");
 
                 }else{
                     Toast.makeText(MainActivity.this, "No se aceptan campos vacios", Toast.LENGTH_LONG).show();
