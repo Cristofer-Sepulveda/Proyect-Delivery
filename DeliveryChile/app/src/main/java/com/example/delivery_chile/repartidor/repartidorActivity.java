@@ -31,7 +31,7 @@ public class repartidorActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     List<Pedido> pedidos;
-    private static  String JSON_URL = "https://delivery-chile.cl/listaMovilPedidos";
+    private static  String JSON_URL = "http://delivery-chile.cl/listaMovilPedidos";
     PedidoAdapter adapter;
 
 
