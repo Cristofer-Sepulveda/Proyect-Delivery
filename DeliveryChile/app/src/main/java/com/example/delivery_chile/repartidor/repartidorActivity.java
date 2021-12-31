@@ -120,25 +120,33 @@ public class repartidorActivity extends AppCompatActivity {
                     try {
                         JSONObject pedidoObject = response.getJSONObject(i);
 
+                        String id_user = "";
 
 
+                        Bundle extras = getIntent().getExtras();
+                        if (extras !=null){
+                            id_user = extras.getString("id_usuario");
+                        }
 
-                        Pedido pedido = new Pedido();
-                        pedido.setId_pedido(pedidoObject.getString("id_pedido").toString());
-                        pedido.setUsuario_id_usuario(pedidoObject.getString("usuario_id_usuario").toString());
-                        pedido.setTienda_id_tienda(pedidoObject.getString("tienda_id_tienda").toString());
-                        pedido.setDescripcion(pedidoObject.getString("descripcion").toString());
-                        pedido.setTelefono(pedidoObject.getString("telefono").toString());
-                        pedido.setDireccion_destino(pedidoObject.getString("direccion_destino").toString());
-                        pedido.setLatitud(pedidoObject.getString("latitud").toString());
-                        pedido.setLongitud(pedidoObject.getString("longitud").toString());
-                        pedido.setFecha_pedido(pedidoObject.getString("fecha_pedido").toString());
-                        pedido.setValor_total(pedidoObject.getString("valor_total").toString());
-                        pedido.setId_estado(pedidoObject.getString("estado_id_estado").toString());
-                        pedido.setFecha_modificacion(pedidoObject.getString("fecha_modificacion").toString());
+                        if (pedidoObject.getString("usuario_id_usuario").equals(id_user)) {
 
-                        pedidos.add(pedido);
+                            Pedido pedido = new Pedido();
+                            pedido.setId_pedido(pedidoObject.getString("id_pedido").toString());
+                            pedido.setUsuario_id_usuario(pedidoObject.getString("usuario_id_usuario").toString());
+                            pedido.setTienda_id_tienda(pedidoObject.getString("tienda_id_tienda").toString());
+                            pedido.setDescripcion(pedidoObject.getString("descripcion").toString());
+                            pedido.setTelefono(pedidoObject.getString("telefono").toString());
+                            pedido.setDireccion_destino(pedidoObject.getString("direccion_destino").toString());
+                            pedido.setLatitud(pedidoObject.getString("latitud").toString());
+                            pedido.setLongitud(pedidoObject.getString("longitud").toString());
+                            pedido.setFecha_pedido(pedidoObject.getString("fecha_pedido").toString());
+                            pedido.setValor_total(pedidoObject.getString("valor_total").toString());
+                            pedido.setId_estado(pedidoObject.getString("estado_id_estado").toString());
+                            pedido.setFecha_modificacion(pedidoObject.getString("fecha_modificacion").toString());
 
+                            pedidos.add(pedido);
+
+                        }
 
 
                     } catch (JSONException e) {
