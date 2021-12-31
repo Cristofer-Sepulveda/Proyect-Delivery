@@ -51,6 +51,9 @@ public class repartidorActivity extends AppCompatActivity {
 
 
     }
+    private void filtarID(){
+
+    }
 
     private void extractPedido(){
         RequestQueue queue = Volley.newRequestQueue(this);

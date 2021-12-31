@@ -18,18 +18,32 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.delivery_chile.MainActivity;
 import com.example.delivery_chile.R;
 import com.vonage.client.VonageClient;
 import com.vonage.client.sms.MessageStatus;
 import com.vonage.client.sms.SmsSubmissionResponse;
 import com.vonage.client.sms.messages.TextMessage;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class detallePedidoActivity extends AppCompatActivity {
 
     //Este boton se encargara de enviar por POST los datos de Estado del pedido a un numero de telefono mediante VONAGE(nexmo)
-    EditText latitud, longitud;
+    EditText latitud, longitud, id_pedido, telefono, descripcion;
 
 
     @Override
@@ -184,16 +198,41 @@ public class detallePedidoActivity extends AppCompatActivity {
 
         });
 
+        Button btnActualizarEstado = findViewById(R.id.btnActualizarEstado);
 
-
-
-
-
-
-
-
-
+        btnActualizarEstado.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String txtIdPedido2 = txtIdPedido.getText().toString();
+                actualizarEstado("https://delivery-chile.cl/updatePedidoMovil", txtIdPedido2);
+                Toast.makeText(detallePedidoActivity.this, txtIdPedido2, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
+    private void actualizarEstado(String URL, String txtIdPedido2){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            public void onResponse(String response){
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(detallePedidoActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<String, String>();
+                parametros.put("id_pedido", txtIdPedido2);
+                return parametros;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
 
 
 }
