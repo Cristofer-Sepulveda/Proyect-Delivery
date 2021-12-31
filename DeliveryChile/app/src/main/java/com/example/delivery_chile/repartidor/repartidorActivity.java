@@ -38,7 +38,7 @@ public class repartidorActivity extends AppCompatActivity {
     List<Pedido> pedidos;
     private static  String JSON_URL = "https://delivery-chile.cl/listaMovilPedidos";
     PedidoAdapter adapter;
-    //private static String URL = "";
+    private static String URL = "https://delivery-chile.cl/listaMovilProductosPorID";
 
 
 
@@ -67,9 +67,9 @@ public class repartidorActivity extends AppCompatActivity {
 
 
     }
-    /*private void filtarID(String URL, String id_user){
+  /*  private void filtarID(String URL, String id_user){
         RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, URL, null, new Response.Listener<JSONObject>() {
             public void onResponse(String response){
 
             }
@@ -89,9 +89,9 @@ public class repartidorActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+*/
 
-
-
+        /*
         StringRequest myReq = new StringRequest(Method.POST,
                                         "http://somesite.com/some_endpoint.php",
                                         createMyReqSuccessListener(),
@@ -105,9 +105,9 @@ public class repartidorActivity extends AppCompatActivity {
             };
         };
         queue.add(myReq);
+        */
 
-
-    }*/
+    //}
 
     private void extractPedido(){
         RequestQueue queue = Volley.newRequestQueue(this);
