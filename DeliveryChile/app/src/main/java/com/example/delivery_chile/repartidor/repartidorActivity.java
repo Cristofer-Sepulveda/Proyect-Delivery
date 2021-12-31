@@ -7,13 +7,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Adapter;
+import android.widget.Toast;
 
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.delivery_chile.R;
 
@@ -23,7 +26,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.transform.ErrorListener;
 
@@ -33,6 +38,8 @@ public class repartidorActivity extends AppCompatActivity {
     List<Pedido> pedidos;
     private static  String JSON_URL = "https://delivery-chile.cl/listaMovilPedidos";
     PedidoAdapter adapter;
+    //private static String URL = "";
+
 
 
     @Override
@@ -42,18 +49,65 @@ public class repartidorActivity extends AppCompatActivity {
 
 
 
+        String id_user = "";
+
+
+        Bundle extras = getIntent().getExtras();
+        if (extras !=null){
+            id_user = extras.getString("id_usuario");
+        }
+
+
         recyclerView = findViewById(R.id.recycler_lista_pedidos);
         pedidos = new ArrayList<>();
 
 
+        //filtarID(URL, id_user);
         extractPedido();
 
 
-
     }
-    private void filtarID(){
+    /*private void filtarID(String URL, String id_user){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
+            public void onResponse(String response){
 
-    }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(repartidorActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<String, String>();
+                parametros.put("usuario_id_usuario", id_user);
+                return parametros;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+
+
+        StringRequest myReq = new StringRequest(Method.POST,
+                                        "http://somesite.com/some_endpoint.php",
+                                        createMyReqSuccessListener(),
+                                        createMyReqErrorListener()) {
+
+            protected Map<String, String> getParams() throws com.Android.volley.AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("param1", num1);
+                params.put("param2", num2);
+                return params;
+            };
+        };
+        queue.add(myReq);
+
+
+    }*/
 
     private void extractPedido(){
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -66,13 +120,7 @@ public class repartidorActivity extends AppCompatActivity {
                     try {
                         JSONObject pedidoObject = response.getJSONObject(i);
 
-                        String id_user = "";
 
-
-                        Bundle extras = getIntent().getExtras();
-                        if (extras !=null){
-                            id_user = extras.getString("id_usuario");
-                        }
 
 
                         Pedido pedido = new Pedido();

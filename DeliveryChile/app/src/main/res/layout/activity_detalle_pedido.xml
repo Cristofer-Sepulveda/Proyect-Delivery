@@ -226,7 +226,7 @@
             app:layout_constraintTop_toBottomOf="@id/estado"
             tools:ignore="MissingConstraints"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="20dp"
 
             />
 
@@ -246,6 +246,7 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/confirmar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
@@ -260,6 +261,29 @@
             android:layout_weight="1"
             android:text="Confirmar Entrega"
             app:layout_constraintTop_toBottomOf="@id/btnEnviarNotificacion"
+            tools:ignore="MissingConstraints"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/cancelar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/confirmar"
+        >
+
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancelar entrega"
+            app:layout_constraintTop_toBottomOf="@id/confirmar"
             tools:ignore="MissingConstraints"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"

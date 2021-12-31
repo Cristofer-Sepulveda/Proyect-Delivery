@@ -1,11 +1,13 @@
 package com.example.delivery_chile.repartidor;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -138,6 +140,9 @@ public class detallePedidoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Toast.makeText(getApplicationContext(),"El evento funciona, pero el codigo no",Toast.LENGTH_LONG).show();
 
+                String txtIdPedido2 = txtIdPedido.getText().toString();
+                String txtIdEstado2 = "2";
+                actualizarEstado("https://delivery-chile.cl/updatePedidoMovil", txtIdPedido2, txtIdEstado2);
                 if (ContextCompat.checkSelfPermission(detallePedidoActivity.this,
                         Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED){
                     //Cuando se da el permiso
@@ -203,14 +208,83 @@ public class detallePedidoActivity extends AppCompatActivity {
         btnActualizarEstado.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String txtIdPedido2 = txtIdPedido.getText().toString();
-                actualizarEstado("https://delivery-chile.cl/updatePedidoMovil", txtIdPedido2);
-                Toast.makeText(detallePedidoActivity.this, txtIdPedido2, Toast.LENGTH_SHORT).show();
+
+                String txtIdPedido3 = txtIdPedido.getText().toString();
+                String txtIdEstado3 = "3";
+                actualizarEstado("https://delivery-chile.cl/updatePedidoMovil", txtIdPedido3, txtIdEstado3);
+                if (ContextCompat.checkSelfPermission(detallePedidoActivity.this,
+                        Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED){
+                    //Cuando se da el permiso
+                    //Crear el metodo
+                    sendMessage();
+
+                }else{
+                    ActivityCompat.requestPermissions(detallePedidoActivity.this, new String[]{Manifest.permission.SEND_SMS}, 100);
+                }
+                //Toast.makeText(detallePedidoActivity.this, txtIdPedido2, Toast.LENGTH_SHORT).show();
+            }
+
+            private void sendMessage(){
+                String sPhone = txtTelefono.getText().toString();
+                String sMessage = "Su pedido Nro: "+txtIdPedido.getText()+"\n"+"Contenido: "+txtdescripcion.getText()+" ha sido entregado con exito";
+
+                try {
+                    if (!sPhone.equals("") && !sMessage.equals("")){
+                        SmsManager smsManager = SmsManager.getDefault();
+                        smsManager.sendTextMessage(sPhone, null, sMessage, null, null);
+                        Toast.makeText(getApplicationContext(), "Mensaje enviado correctamente", Toast.LENGTH_LONG).show();
+                    }else {
+                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                    }
+                }catch (Exception e){
+
+                }
+
+
+            }
+        });
+
+        Button btnCancelar = findViewById(R.id.btnCancelar);
+
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String txtIdPedido4 = txtIdPedido.getText().toString();
+                String txtIdEstado4 = "4";
+                actualizarEstado("https://delivery-chile.cl/updatePedidoMovil", txtIdPedido4, txtIdEstado4);
+                if (ContextCompat.checkSelfPermission(detallePedidoActivity.this,
+                        Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED){
+                    //Cuando se da el permiso
+                    //Crear el metodo
+                    sendMessage();
+
+                }else{
+                    ActivityCompat.requestPermissions(detallePedidoActivity.this, new String[]{Manifest.permission.SEND_SMS}, 100);
+                }
+            }
+
+            private void sendMessage(){
+                String sPhone = txtTelefono.getText().toString();
+                String sMessage = "Su pedido Nro: "+txtIdPedido.getText()+"\n"+"Contenido: "+txtdescripcion.getText()+" no se ha podido entregar.\n   PEDIDO CANCELADO";
+
+                try {
+                    if (!sPhone.equals("") && !sMessage.equals("")){
+                        SmsManager smsManager = SmsManager.getDefault();
+                        smsManager.sendTextMessage(sPhone, null, sMessage, null, null);
+                        Toast.makeText(getApplicationContext(), "Mensaje enviado correctamente", Toast.LENGTH_LONG).show();
+                    }else {
+                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                    }
+                }catch (Exception e){
+
+                }
+
+
             }
         });
     }
 
-    private void actualizarEstado(String URL, String txtIdPedido2){
+    private void actualizarEstado(String URL, String txtIdPedido, String txtIdEstado){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             public void onResponse(String response){
 
@@ -224,7 +298,8 @@ public class detallePedidoActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("id_pedido", txtIdPedido2);
+                parametros.put("id_pedido", txtIdPedido);
+                parametros.put("estado_id_estado", txtIdEstado);
                 return parametros;
             }
         };
