@@ -69,6 +69,7 @@ public class detallePedidoActivity extends AppCompatActivity {
         String obtenerLongitud = "";
         String valorTotal = "";
         String idEstado = "";
+        String estado ="";
 
 
         Bundle extras = getIntent().getExtras();
@@ -105,6 +106,16 @@ public class detallePedidoActivity extends AppCompatActivity {
         txtValor.setText(valorTotal);
         TextView txtIdEstado = findViewById(R.id.estado);
         txtIdEstado.setText(idEstado);
+        TextView tvStringEstado = findViewById(R.id.tv_string_estado);
+        if (txtIdEstado.getText().equals("1")){
+            tvStringEstado.setText("En Espera");
+        } else if (txtIdEstado.getText().equals("2")){
+            tvStringEstado.setText("En Reparto");
+        } else if (txtIdEstado.getText().equals("3")){
+            tvStringEstado.setText("Entregado");
+        } else if (txtIdEstado.getText().equals("4")){
+            tvStringEstado.setText("Cancelado");
+        }
 
 
         Button btnVerMapa = findViewById(R.id.btnVerMapa);
@@ -223,6 +234,7 @@ public class detallePedidoActivity extends AppCompatActivity {
                 }
                 //Toast.makeText(detallePedidoActivity.this, txtIdPedido2, Toast.LENGTH_SHORT).show();
             }
+
 
             private void sendMessage(){
                 String sPhone = txtTelefono.getText().toString();

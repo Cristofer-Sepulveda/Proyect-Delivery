@@ -71,6 +71,15 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
         holder.fechaPedido.setText((CharSequence) pedidos.get(position).getFecha_pedido());
         holder.valorTotal.setText(pedidos.get(position).getValor_total());
         holder.idEstado.setText(pedidos.get(position).getId_estado());
+        if (holder.idEstado.getText().equals("1")) {
+            holder.txtStringEstado.setText("En Espera");
+        } else if (holder.idEstado.getText().equals("2")) {
+            holder.txtStringEstado.setText("En Reparto");
+        } else if (holder.idEstado.getText().equals("3")) {
+            holder.txtStringEstado.setText("Entregado");
+        } else if (holder.idEstado.getText().equals("4")) {
+            holder.txtStringEstado.setText("Cancelado");
+        }
         holder.fechaModificacion.setText((CharSequence) pedidos.get(position).getFecha_modificacion());
         // Aqui van los botones y sus listener para abrir otro activity y pasar los datos necesarios para ver o editar
         holder.setOnClickListeners();
@@ -98,6 +107,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
         TextView fechaPedido;
         TextView valorTotal;
         TextView idEstado;
+        TextView txtStringEstado;
         TextView fechaModificacion;
 
         Button btnVerDetalles;
@@ -117,6 +127,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
             longitud = itemView.findViewById(R.id.tv_longitud);
             fechaPedido = itemView.findViewById(R.id.tv_fecha);
             valorTotal = itemView.findViewById(R.id.tv_valor);
+            txtStringEstado = itemView.findViewById(R.id.txt_string_estado);
             idEstado = itemView.findViewById(R.id.tv_estado);
             fechaModificacion = itemView.findViewById(R.id.tv_fecha_modificacion);
             btnVerDetalles = itemView.findViewById(R.id.btnVerDetalles);

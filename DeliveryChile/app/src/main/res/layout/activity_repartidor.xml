@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".repartidor.repartidorActivity"
     android:orientation="vertical"
-    android:background="@color/white">
+    >
 
     <TextView
         android:id="@+id/textView"
@@ -14,9 +14,8 @@
         android:layout_height="wrap_content"
         android:background="@color/delivery_background"
         android:text="Pedidos"
-        android:textColor="@color/white"
         android:textSize="50dp"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"/>
 
     <SearchView
         android:id="@+id/barra_de_busqueda"

@@ -121,7 +121,7 @@ public class repartidorActivity extends AppCompatActivity {
                         JSONObject pedidoObject = response.getJSONObject(i);
 
                         String id_user = "";
-
+                        String est= "";
 
                         Bundle extras = getIntent().getExtras();
                         if (extras !=null){
