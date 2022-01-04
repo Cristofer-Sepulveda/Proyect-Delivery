@@ -158,7 +158,7 @@ public class detallePedidoActivity extends AppCompatActivity {
 
                 String txtIdPedido2 = txtIdPedido.getText().toString();
                 String txtIdEstado2 = "2";
-                actualizarEstado("https://delivery-chile.cl/updatePedidoMovil", txtIdPedido2, txtIdEstado2);
+
 
                 String dialog_title = "Cambiar estado";
                 String dialog_message= "En reparto";
@@ -174,6 +174,7 @@ public class detallePedidoActivity extends AppCompatActivity {
                                         Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED){
                                     //Cuando se da el permiso
                                     //Crear el metodo
+                                    actualizarEstado("https://delivery-chile.cl/updatePedidoMovil", txtIdPedido2, txtIdEstado2);
                                     sendMessage();
 
                                 }else{
@@ -253,10 +254,10 @@ public class detallePedidoActivity extends AppCompatActivity {
 
                 String txtIdPedido3 = txtIdPedido.getText().toString();
                 String txtIdEstado3 = "3";
-                actualizarEstado("https://delivery-chile.cl/updatePedidoMovil", txtIdPedido3, txtIdEstado3);
+
 
                 String dialog_title = "Cambiar estado";
-                String dialog_message= "En reparto";
+                String dialog_message= "Entregado";
                 //Uncomment the below code to Set the message and title from the strings.xml file
                 builder.setMessage(dialog_message) .setTitle(dialog_title);
 
@@ -269,6 +270,7 @@ public class detallePedidoActivity extends AppCompatActivity {
                                         Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED){
                                     //Cuando se da el permiso
                                     //Crear el metodo
+                                    actualizarEstado("https://delivery-chile.cl/updatePedidoMovil", txtIdPedido3, txtIdEstado3);
                                     sendMessage();
 
                                 }else{
@@ -319,10 +321,10 @@ public class detallePedidoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String txtIdPedido4 = txtIdPedido.getText().toString();
                 String txtIdEstado4 = "4";
-                actualizarEstado("https://delivery-chile.cl/updatePedidoMovil", txtIdPedido4, txtIdEstado4);
+
 
                 String dialog_title = "Cambiar estado";
-                String dialog_message= "En reparto";
+                String dialog_message= "Cancelado";
                 //Uncomment the below code to Set the message and title from the strings.xml file
                 builder.setMessage(dialog_message) .setTitle(dialog_title);
 
@@ -335,6 +337,7 @@ public class detallePedidoActivity extends AppCompatActivity {
                                         Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED){
                                     //Cuando se da el permiso
                                     //Crear el metodo
+                                    actualizarEstado("https://delivery-chile.cl/updatePedidoMovil", txtIdPedido4, txtIdEstado4);
                                     sendMessage();
 
                                 }else{
