@@ -3,12 +3,11 @@ package com.example.delivery_chile.repartidor;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Adapter;
-import android.widget.Button;
 import android.widget.Toast;
 
 
@@ -20,7 +19,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.delivery_chile.MainActivity;
 import com.example.delivery_chile.R;
 
 
@@ -38,7 +36,6 @@ import javax.xml.transform.ErrorListener;
 public class repartidorActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    Button btnActualiza;
     List<Pedido> pedidos;
     private static  String JSON_URL = "https://delivery-chile.cl/listaMovilPedidos";
     PedidoAdapter adapter;
@@ -51,9 +48,24 @@ public class repartidorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repartidor);
 
+        final SwipeRefreshLayout pullToRefresh = findViewById(R.id.refreshLayout);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                recreate();
+                pullToRefresh.setRefreshing(false);
+            }
+        });
 
 
 
+        String id_user = "";
+
+
+        Bundle extras = getIntent().getExtras();
+        if (extras !=null){
+            id_user = extras.getString("id_usuario");
+        }
 
 
         recyclerView = findViewById(R.id.recycler_lista_pedidos);
@@ -64,18 +76,6 @@ public class repartidorActivity extends AppCompatActivity {
         extractPedido();
 
 
-        btnActualiza = findViewById(R.id.btnActualizar);
-        btnActualiza.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                actualizar();
-            }
-        });
-
-    }
-
-    public void actualizar (){
-        this.recreate();
     }
   /*  private void filtarID(String URL, String id_user){
         RequestQueue queue = Volley.newRequestQueue(this);
