@@ -8,6 +8,8 @@
     android:orientation="vertical"
     >
 
+
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -32,6 +34,14 @@
         android:layout_width="match_parent"
         android:layout_height="548dp"
         android:layout_marginTop="20dp" />
+    <Button
+        android:id="@+id/btnActualizar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:hint="Actualizar lista de pedidos"
+        android:layout_gravity="center_horizontal|bottom"
+        />
 
 
 </LinearLayout>
