@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -47,11 +48,15 @@ public class detallePedidoActivity extends AppCompatActivity {
     //Este boton se encargara de enviar por POST los datos de Estado del pedido a un numero de telefono mediante VONAGE(nexmo)
     EditText latitud, longitud, id_pedido, telefono, descripcion;
 
+    AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_pedido);
+
+        builder = new AlertDialog.Builder(this);
+
 
         latitud = findViewById(R.id.latitud);
         longitud = findViewById(R.id.longitud);
@@ -154,15 +159,41 @@ public class detallePedidoActivity extends AppCompatActivity {
                 String txtIdPedido2 = txtIdPedido.getText().toString();
                 String txtIdEstado2 = "2";
                 actualizarEstado("https://delivery-chile.cl/updatePedidoMovil", txtIdPedido2, txtIdEstado2);
-                if (ContextCompat.checkSelfPermission(detallePedidoActivity.this,
-                        Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED){
-                    //Cuando se da el permiso
-                    //Crear el metodo
-                    sendMessage();
 
-                }else{
-                    ActivityCompat.requestPermissions(detallePedidoActivity.this, new String[]{Manifest.permission.SEND_SMS}, 100);
-                }
+                String dialog_title = "Cambiar estado";
+                String dialog_message= "En reparto";
+                //Uncomment the below code to Set the message and title from the strings.xml file
+                builder.setMessage(dialog_message) .setTitle(dialog_title);
+
+                //Setting message manually and performing action on button click
+                builder.setMessage("¿Desea enviar una notificación al cliente?")
+                        .setCancelable(false)
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                if (ContextCompat.checkSelfPermission(detallePedidoActivity.this,
+                                        Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED){
+                                    //Cuando se da el permiso
+                                    //Crear el metodo
+                                    sendMessage();
+
+                                }else{
+                                    ActivityCompat.requestPermissions(detallePedidoActivity.this, new String[]{Manifest.permission.SEND_SMS}, 100);
+                                }
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //  Action for 'NO' Button
+                                dialog.cancel();
+                            }
+                        });
+                //Creating dialog box
+                AlertDialog alert = builder.create();
+                //Setting the title manually
+                alert.setTitle("AlertDialogExample");
+                alert.show();
+
 
                 /**
                 try {
