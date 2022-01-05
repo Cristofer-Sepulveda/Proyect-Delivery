@@ -355,7 +355,7 @@ public class detallePedidoActivity extends AppCompatActivity {
                 //Creating dialog box
                 AlertDialog alert = builder.create();
                 //Setting the title manually
-                alert.setTitle("Cambiar a "+"'Entregado'"+"");
+                alert.setTitle("Cambiar a "+"'Cancelado'"+"");
                 alert.show();
 
             }
